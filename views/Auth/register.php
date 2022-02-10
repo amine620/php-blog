@@ -3,7 +3,9 @@
 include '../../controllers/UserController.php';
 $error = '';
 if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
+
     if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['password'])) {
+
         if (register($_POST['name'], $_POST['email'], $_POST['password']) == false) {
             $error = 'email already exist';
         }
@@ -38,16 +40,13 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
 
 <body class="text-center">
     <form action="" class="form-signin" method="post">
-        <?php
-        if ($error != '') :
-        ?>
 
+       <?php if ($error != ''):?>
             <div class="alert alert-danger" role="alert">
                 <?php echo $error ?>
             </div>
-
         <?php endif ?>
-
+        
         <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
         <label for="inputEmail" class="sr-only">Name</label>
         <input name="name" type="text" id="inputEmail" class="form-control mt-2" placeholder="Name">

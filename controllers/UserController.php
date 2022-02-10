@@ -37,9 +37,27 @@ function register($name,$email,$password)
            return false;
        }
    
+    }
+}
 
+function login($email,$password){
+    global $pdo;
 
-
-
+    if($pdo){
+     
+       $query='SELECT *from users where email=:email and password=:password';
+       $statement=$pdo->prepare($query);
+       $statement->execute([
+           ':email'=>$email,
+           ':password'=>$password,
+       ]);
+       $user=$statement->fetchAll();
+       if(count($user)==0)
+       {
+           return false;
+       }
+       else{
+           return true;
+       }
     }
 }

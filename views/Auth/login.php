@@ -1,4 +1,21 @@
 
+<?php
+
+include '../../controllers/UserController.php';
+$error = '';
+if ( isset($_POST['email']) && isset($_POST['password'])) {
+    
+    if ( !empty($_POST['email']) && !empty($_POST['password'])) {
+
+        if (login($_POST['email'], $_POST['password']) == false) {
+            $error = 'incorrect email or password';
+        }
+    } else {
+        $error = 'filed missing';
+    }
+}
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -20,12 +37,20 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="" method="POST">
+
+       <?php if ($error != ''):?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $error ?>
+            </div>
+        <?php endif ?>
+
+
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control mt-2" placeholder="Email address" required autofocus>
+      <input name="email" type="email" id="inputEmail" class="form-control mt-2" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control mt-2" placeholder="Password" required>
+      <input name="password" type="password" id="inputPassword" class="form-control mt-2" placeholder="Password" required>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
   </body>
