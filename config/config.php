@@ -8,10 +8,12 @@ const PASSWORD="";
 function conexion()
 {
    try {
+       
        return  new PDO(ROOT,USERNAME,PASSWORD);
 
    } catch (PDOException $ex) {
 
          return false;
    }
+
 }
