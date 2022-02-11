@@ -1,7 +1,7 @@
 <?php 
 
 include  __DIR__.'/../config/config.php';
-
+session_start();
 
 $pdo=conexion();
 
@@ -31,6 +31,8 @@ function register($name,$email,$password)
                 ':email'=>$email,
                 ':password'=>$password
             ]);
+
+            $_SESSION['email']=$email;
             return true;
        }
        else{
@@ -57,6 +59,7 @@ function login($email,$password){
            return false;
        }
        else{
+           $_SESSION['email']=$email;
            return true;
        }
     }

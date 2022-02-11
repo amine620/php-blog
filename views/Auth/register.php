@@ -1,6 +1,15 @@
 <?php
 
 include '../../controllers/UserController.php';
+if(isset($_SESSION['email']) && !empty($_SESSION['email']))
+{
+  header('location:../blogs/index.php');
+}
+
+
+
+
+
 $error = '';
 if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])) {
 
@@ -8,6 +17,9 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
 
         if (register($_POST['name'], $_POST['email'], $_POST['password']) == false) {
             $error = 'email already exist';
+        }
+        {
+           header('location:../blogs/index.php');
         }
     } else {
         $error = 'filed missing';
