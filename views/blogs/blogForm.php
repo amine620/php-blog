@@ -5,10 +5,15 @@
   $success="";
   $types=['image/jpeg','image/jpg','image/png'];
 
+
+  if(!isset($_SESSION['email']) && empty($_SESSION['email']))
+        {
+        header('location:../Auth/login.php');
+        }
+
   
   if(isset($_POST['title']) && isset($_POST['content']) && isset($_FILES['photo']['name']))
   {
-      print_r($_FILES);
 
       if(!empty($_POST['title']) && !empty($_POST['content']) && !empty($_FILES['photo']['name']))
       {
@@ -16,6 +21,12 @@
            {
                create($_POST['title'],$_POST['content'],$_FILES['photo']['name'],$_POST['category_id']);
                $success="post was published successfully";
+
+
+                //    file upload
+               $path=$_FILES['photo']['tmp_name'];
+               $destination='../../public/images/'.$_FILES['photo']['name'];
+               move_uploaded_file($path,$destination);
            }
            else{
               $error = 'file should be in the range of (jpg,jpeg,png)';
