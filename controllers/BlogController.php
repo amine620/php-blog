@@ -52,7 +52,7 @@ function getPosts(){
 
     if($pdo)
      {
-    $query='SELECT title,content,photo,users.name as username,categories.name from posts
+    $query='SELECT  posts.id as postId,user_id ,title,content,photo,users.name as username,categories.name from posts
      inner join users 
      on posts.user_id=users.id
      inner join categories
@@ -67,6 +67,21 @@ function getPosts(){
      }
 }
 
+function delete($id)
+{
+    global $pdo;
 
+    if($pdo)
+     {
+    $query='DELETE from posts where id=:id';
+
+    $statement=$pdo->prepare($query);
+
+    $statement->execute([
+        ':id'=>$id
+    ]);
+     }
+
+}
 
 ?>
