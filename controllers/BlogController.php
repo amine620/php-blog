@@ -84,4 +84,34 @@ function delete($id)
 
 }
 
+function search($word){
+    global $pdo;
+
+    if($pdo)
+     {
+    $query='SELECT  posts.id as postId,user_id ,title,content,photo,users.name as username,categories.name from posts
+     inner join users 
+     on posts.user_id=users.id
+     inner join categories
+     on
+     posts.category_id=categories.id
+
+     where posts.title like :title
+      or 
+      users.name like :name
+      or 
+      categories.name like :category_name
+     ';
+      $statement=$pdo->prepare($query);
+
+      $statement->execute([
+          ':title'=>"$word%",
+          ':name'=>"$word%",
+          ':category_name'=>"$word%",
+      ]);
+
+      return $statement->fetchAll();
+     }
+}
+
 ?>

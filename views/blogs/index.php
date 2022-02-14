@@ -9,7 +9,7 @@ if(isset($_POST['id']) && !empty($_POST['id']))
 {
     echo 'ok';
     delete($_POST['id']);
-    header('location:index.php');
+    // header('location:index.php');
     $success="post was deleted successfully";
 }
 

@@ -1,11 +1,18 @@
 
 <?php
 
+// include "../../controllers/BlogController.php";
+
 if(isset($_POST['logout']))
 {
   session_destroy();
   header('location:index.php');
 }
+
+  if(isset($_POST['search']) && !empty($_POST['search']))
+  {
+    $posts=search($_POST['search']);
+  }
 
   ?>
 
@@ -48,8 +55,8 @@ if(isset($_POST['logout']))
             </li>
             <?php endif ?>
           </ul>
-          <form class="form-inline mt-2 mt-md-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <form method="POST" class="form-inline mt-2 mt-md-0">
+            <input name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
           
