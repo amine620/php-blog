@@ -21,6 +21,7 @@ if ( isset($_POST['email']) && isset($_POST['password'])) {
         }
         else{
             header('location:../blogs/index.php');
+            // print_r(login($_POST['email'], $_POST['password'])) ;
         }
     } else {
         $error = 'filed missing';

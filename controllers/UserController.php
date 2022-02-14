@@ -53,13 +53,15 @@ function login($email,$password){
            ':email'=>$email,
            ':password'=>$password,
        ]);
-       $user=$statement->fetchAll();
+       $user=$statement->fetch();
+      
        if(count($user)==0)
        {
            return false;
        }
        else{
            $_SESSION['email']=$email;
+           $_SESSION['id']=$user['id'];
            return true;
        }
     }

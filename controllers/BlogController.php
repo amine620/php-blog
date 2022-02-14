@@ -38,7 +38,7 @@ function create($title,$content,$photo,$category_id){
              'content'=>$content,
              'photo'=>$photo,
              'category_id'=>$category_id,
-             'user_id'=>1,
+             'user_id'=>$_SESSION['id'],
          ]);
 
         

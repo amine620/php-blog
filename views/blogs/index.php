@@ -4,6 +4,8 @@ include '../../controllers/BlogController.php';
 
 $posts = getPosts();
 
+
+
 ?>
 
 <?php include "../layouts/header.php" ?>
@@ -11,6 +13,7 @@ $posts = getPosts();
 
 
 <div class="container mt-5">
+    <?php print_r($_SESSION); ?>
     <div class="row">
 
        <?php foreach($posts as $post): ?>
