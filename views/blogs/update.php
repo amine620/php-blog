@@ -46,6 +46,9 @@
   {
       $post=getOnePost($_GET['id']);
   }
+  else{
+      header('location:index.php');
+  }
 
  ?>
 
