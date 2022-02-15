@@ -134,5 +134,48 @@ function getOnePost($id){
      }
 }
 
+function update($title,$content,$photo,$category_id,$id){
+    global $pdo;
+
+    if($pdo)
+     {
+         $query='UPDATE posts set title=:title,content=:content,photo=:photo,category_id=:category_id where id=:id';
+
+         $statement=$pdo->prepare($query);
+
+         $statement->execute([
+             ':id'=>$id,
+             ':title'=>$title,
+             ':content'=>$content,
+             ':photo'=>$photo,
+             ':category_id'=>$category_id,
+         ]);
+
+     }
+}
+
+function details($id)
+{
+    global $pdo;
+
+    if($pdo)
+     {
+    $query='SELECT  posts.id as postId,user_id ,title,content,photo,users.name as username,categories.name from posts
+     inner join users 
+     on posts.user_id=users.id
+     inner join categories
+     on
+     posts.category_id=categories.id
+     where posts.id=:id
+     ';
+      $statement=$pdo->prepare($query);
+
+      $statement->execute([
+          ':id'=>$id
+      ]);
+
+      return $statement->fetch();
+     }
+}
 
 ?>

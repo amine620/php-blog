@@ -19,14 +19,15 @@
       {
            if(in_array($_FILES['photo']['type'],$types))
            {
-               create($_POST['title'],$_POST['content'],$_FILES['photo']['name'],$_POST['category_id']);
-               $success="post was published successfully";
-
-
+               update($_POST['title'],$_POST['content'],$_FILES['photo']['name'],$_POST['category_id'],$_GET['id']);
+              
                 //    file upload
                $path=$_FILES['photo']['tmp_name'];
                $destination='../../public/images/'.$_FILES['photo']['name'];
                move_uploaded_file($path,$destination);
+
+               header('location:index.php');
+
            }
            else{
               $error = 'file should be in the range of (jpg,jpeg,png)';

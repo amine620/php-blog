@@ -50,7 +50,11 @@ if(isset($_POST['id']) && !empty($_POST['id']))
                     </li>
                     <?php endif ?>
                     <?php endif ?>
+                    <li class="list-group-item">
+                        <a href="details.php?id=<?php echo $post['postId'] ?>" class="btn btn-primary">details</a>
+                    </li>
                 </ul>
+
             </div>
         </div>
         <?php endforeach ?>
