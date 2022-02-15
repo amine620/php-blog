@@ -45,7 +45,7 @@ if(isset($_POST['id']) && !empty($_POST['id']))
                     
                             <input name="id" type="hidden" value='<?php echo $post["postId"] ?>' >
                             <button class="btn btn-danger">delete</button>
-                            <a href="#" class="btn btn-warning">edit</a>
+                            <a href="update.php?id=<?php echo $post['postId'] ?>" class="btn btn-warning">edit</a>
                         </form>
                     </li>
                     <?php endif ?>

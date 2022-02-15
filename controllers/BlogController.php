@@ -41,7 +41,6 @@ function create($title,$content,$photo,$category_id){
              'user_id'=>$_SESSION['id'],
          ]);
 
-        
 
      }
      
@@ -74,6 +73,8 @@ function delete($id)
     if($pdo)
      {
     $query='DELETE from posts where id=:id';
+
+    
 
     $statement=$pdo->prepare($query);
 
@@ -113,5 +114,25 @@ function search($word){
       return $statement->fetchAll();
      }
 }
+  
+
+function getOnePost($id){
+    global $pdo;
+
+    if($pdo)
+     {
+         $query='SELECT *from posts where id = :id';
+
+         $statement=$pdo->prepare($query);
+
+         $statement->execute([
+             ':id'=>$id
+         ]);
+
+         return $statement->fetch();
+
+     }
+}
+
 
 ?>
