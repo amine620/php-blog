@@ -178,4 +178,45 @@ function details($id)
      }
 }
 
+
+function comment($content,$postId){
+
+    global $pdo;
+  
+    if($pdo)
+     {
+         $query='INSERT into comments(content,user_id,post_id) values(:content,:user_id,:post_id)';
+
+         $statement=$pdo->prepare($query);
+
+         $statement->execute([
+             ':content'=>$content,
+             ':post_id'=>$postId,
+             ':user_id'=>$_SESSION['id'],
+         ]);
+
+
+     }  
+}
+
+function getComments($id)
+{
+    global $pdo;
+
+    if($pdo)
+     {
+        $query="SELECT content,users.name from comments
+         inner join users
+         on comments.user_id=users.id 
+         where post_id=:post_id
+         ";
+      $statement=$pdo->prepare($query);
+
+      $statement->execute([
+          ':post_id'=>$id
+      ]);
+
+      return $statement->fetchAll();
+     }
+}
 ?>

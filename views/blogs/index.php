@@ -3,14 +3,12 @@
 include '../../controllers/BlogController.php';
 
 $posts = getPosts();
-$success="";
 
 if(isset($_POST['id']) && !empty($_POST['id']))
 {
     echo 'ok';
     delete($_POST['id']);
-    // header('location:index.php');
-    $success="post was deleted successfully";
+    header('location:index.php');
 }
 
 ?>
@@ -20,12 +18,6 @@ if(isset($_POST['id']) && !empty($_POST['id']))
 
 
 <div class="container mt-5">
-
-<?php if ($success != ''):?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $success ?>
-            </div>
-<?php endif ?>
 
     <div class="row">
 
